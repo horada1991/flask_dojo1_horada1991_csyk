@@ -1,4 +1,4 @@
-from flask import Flask, g, request
+from flask import Flask, g, request, render_template
 import sqlite3
 
 app = Flask('Flask Dojo')
@@ -39,8 +39,18 @@ def req_counter():
     else:
         db.execute("""UPDATE flask_dojo SET counter=? WHERE method=?""", [data[0][0] + 1, request.method])
     db.commit()
+    query = db.execute("""SELECT * FROM flask_dojo""")
+    datas = query.fetchall()
+    return render_template('stat.html', datas=datas)
 
 
-with app.app_context():
-    setup_db()
-    req_counter()
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('test.html')
+#
+# with app.app_context():
+#     setup_db()
+
+
+if __name__ == '__main__':
+    app.run()

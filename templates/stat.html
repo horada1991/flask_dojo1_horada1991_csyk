@@ -1,0 +1,23 @@
+<!doctype HTML>
+        <html>
+<head>
+
+
+</head>
+<body>
+    <table border = 3>
+        <tr>
+            <td>Request Type</td>
+            <td>Count</td>
+        </tr>
+        {% for data in datas %}
+        <tr>
+            <td>{{data[1]}}</td>
+            <td>{{data[2]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>
